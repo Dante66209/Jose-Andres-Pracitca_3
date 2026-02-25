@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://blr84w5xu5jmh"]
+
+[ext_resource type="Script" uid="uid://b0rp1vqiw6fye" path="res://Power ups/PowerUpSpeed.gd" id="1_504w8"]
+[ext_resource type="Texture2D" uid="uid://p8ysyupft1cp" path="res://art/u-removebg-preview.png" id="2_504w8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pil1b"]
+radius = 42.0119
+
+[node name="PowerUpSpeed" type="Area2D" unique_id=27996333]
+script = ExtResource("1_504w8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1118201238]
+position = Vector2(2.9999971, -3.4999988)
+scale = Vector2(0.2278481, 0.2528302)
+texture = ExtResource("2_504w8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=404596814]
+position = Vector2(4, -2)
+shape = SubResource("CircleShape2D_pil1b")

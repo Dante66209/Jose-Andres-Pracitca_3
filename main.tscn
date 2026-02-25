@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://ctt6g56c2c01u"]
+
+[ext_resource type="Script" uid="uid://cubsldue8k1es" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://i14cne0ne1nr" path="res://mob.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c360cadx30s73" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bw7owjv31oa6j" path="res://shield_item.tscn" id="3_5vw27"]
+[ext_resource type="PackedScene" uid="uid://bmkb44km1twlr" path="res://hud.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://blr84w5xu5jmh" path="res://Power ups/PowerUpSpeed.tscn" id="4_5vw27"]
+[ext_resource type="AudioStream" uid="uid://3kwul3kex5hd" path="res://art/boom3.wav" id="7_5vw27"]
+[ext_resource type="AudioStream" uid="uid://cc545m0rx4xwt" path="res://art/Chase Through Worlds.ogg" id="8_5vw27"]
+
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, -1, 720)
+}
+point_count = 6
+
+[node name="Main" type="Node" unique_id=77982432]
+script = ExtResource("1_0xm2m")
+mob_scene = ExtResource("2_1bvp3")
+shield_scene = ExtResource("3_5vw27")
+powerup_scenes = Array[PackedScene]([ExtResource("4_5vw27"), ExtResource("3_5vw27")])
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1871186709]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.65635794, 0.67028385, 0.92573214, 1)
+
+[node name="Player" parent="." unique_id=1496562076 instance=ExtResource("2_h2yge")]
+
+[node name="PowerUpTimer" type="Timer" parent="." unique_id=2127457173]
+wait_time = 5.0
+
+[node name="LifetimeTimer" type="Timer" parent="." unique_id=597031493]
+wait_time = 5.0
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1364370165]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=461536955]
+wait_time = 2.0
+one_shot = true
+
+[node name="MobTimer" type="Timer" parent="." unique_id=57457867]
+wait_time = 0.5
+
+[node name="StartPosition" type="Marker2D" parent="." unique_id=1188334402]
+position = Vector2(240, 450)
+
+[node name="MobPath" type="Path2D" parent="." unique_id=1287955653]
+curve = SubResource("Curve2D_1bvp3")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=1451664854]
+position = Vector2(0, 720)
+rotation = -1.5707964
+
+[node name="HUD" parent="." unique_id=1421705381 instance=ExtResource("4_1bvp3")]
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=276720241]
+stream = ExtResource("7_5vw27")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=596696807]
+stream = ExtResource("8_5vw27")
+autoplay = true
+
+[connection signal="hit" from="Player" to="." method="new_game "]
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]

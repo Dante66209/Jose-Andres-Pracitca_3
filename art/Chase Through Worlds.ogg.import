@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cc545m0rx4xwt"
+path="res://.godot/imported/Chase Through Worlds.ogg-6c8543bd62b64ea32558507f3761cd9a.oggvorbisstr"
+
+[deps]
+
+source_file="res://art/Chase Through Worlds.ogg"
+dest_files=["res://.godot/imported/Chase Through Worlds.ogg-6c8543bd62b64ea32558507f3761cd9a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

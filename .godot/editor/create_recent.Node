@@ -1,0 +1,14 @@
+Sprite2D
+Timer
+CollisionShape2D
+Area2D
+AnimatedSprite2D
+ColorRect
+ProgressBar
+AudioStreamPlayer2D
+Button
+Label
+CanvasLayer
+PathFollow2D
+Path2D
+Marker2D
